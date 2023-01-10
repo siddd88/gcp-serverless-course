@@ -4,7 +4,6 @@
 
  - name: 'gcr.io/cloud-builders/docker'
    args: ['push', 'gcr.io/gcp-serverless-project-374110/demo-app-cloudrun:$COMMIT_SHA']
-
  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
    entrypoint: gcloud
    args:
