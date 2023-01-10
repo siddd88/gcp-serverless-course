@@ -1,0 +1,19 @@
+ steps:
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', 'gcr.io/gcp-serverless-project-374110/demo-app-cloudrun:$COMMIT_SHA', '.']
+
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'gcr.io/gcp-serverless-project-374110/demo-app-cloudrun:$COMMIT_SHA']
+
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - 'demo-app-cloudrun'
+   - '--image'
+   - 'gcr.io/gcp-serverless-project-374110/demo-app-cloudrun:$COMMIT_SHA'
+   - '--region'
+   - 'us-central1'
+ images:
+ - 'gcr.io/gcp-serverless-project-374110/demo-app-cloudrun:$COMMIT_SHA'
