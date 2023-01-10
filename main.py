@@ -16,7 +16,7 @@ def main():
         SELECT
         answer_count,comment_count
         FROM `bigquery-public-data.stackoverflow.stackoverflow_posts`
-        where id={0}
+        where id={0} limit 10
     """.format(int(post_id))
     
     dataframe = ( bigquery_client.query(sql)
